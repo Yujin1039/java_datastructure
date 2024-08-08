@@ -46,13 +46,13 @@ public class IntDeque {
 	
 	//앞에서 데이터 제거
 	public int removeFirst() {
-		if(num1 <= 0) throw new IllegalStateException();
+		if(num1 <= 0) throw new IllegalStateException("Deque is empty");
 		return deque[num1--];	
 	}
 
 	//뒤에서 데이터 제거
 	public int removeLast() {
-		if(num2 <= 0) throw new IllegalStateException();
+		if(num2 <= 0) throw new IllegalStateException("Deque is empty");
 		return deque[max-1-num2--];	
 	}
 	
