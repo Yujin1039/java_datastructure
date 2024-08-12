@@ -19,8 +19,11 @@ public class IntCircularDeque {
 		}
 	}
 	
-	/*
-	 * 원형 큐에서는 index 자체에 오류가 발생하지않도록 처리하는 
+	/* <구현시 고민한 점>
+	 * queue 방식 데이터 삽입,제거는 되는데 stack 불가
+	 * -> front,rear 포인터가 각각 addFirst,addLast 메서드와 removeFirst,removeLast 메서드에서 
+	 *    포인터 이동 없이 동일한 위치에 데이터 변동이 있었기 때문
+	 * -> index가 0일 때 계산식에서 ArrayIndexOutOfBoundsException 고려한 처리가 없었음 
 	 */
 	
 	/*num값 수정 까먹음*/
@@ -49,7 +52,7 @@ public class IntCircularDeque {
 	public int addFirst(int b) {
 		if(num >= max) throw new IllegalStateException("Deque is full");
 		//if(front <= 0) front = max;
-		//deque[front-- -1] = b;
+		//deque[--front] = b; <- (= front-- -1)
 		front = (front-1+max) % max;
 		deque[front] = b;	
 		num++;
@@ -63,7 +66,7 @@ public class IntCircularDeque {
 	public int removeLast() {
 		if(num <= 0) throw new IllegalStateException("Deque is empty");
 		//if(rear <= 0) rear = max;
-		//int c = deque[rear-- -1];
+		//int c = deque[--rear]; <- (= rear-- -1)
 		rear = (rear-1+max) % max;
 		int c = deque[rear];
 		num--;
@@ -77,11 +80,34 @@ public class IntCircularDeque {
 	}
 
 	//가장 뒤의 데이터 엿보기
+	/* rear = 마지막 데이터 index + 1 값이므로
+	 * deque[rear]는 비어있는 값
+	 * 띠라서 가장 마지막 데이터는 deque[rear -1]
+	 */
 	public int peekLast() {
 		if(num <= 0) throw new IllegalStateException("Deque is empty");
-		return deque[rear];
+		return deque[rear == 0 ? max-1:rear-1];
 	}
-
+	
+	//--- 기타 ---//
+	//배열상 실제 index 탐색
+	public int indexOf(int c) {
+		if(num <= 0) throw new IllegalStateException("Deque is empty");
+		for(int i=0;i<num;i++) {
+			int d = (front+i)%max;
+			if(deque[d] == c) return d;
+		}
+		return -1;
+	}
+	
+	//deque 내 순서 검색
+	public int search(int x) {
+		for (int i = 0; i < num; i++)
+			if (deque[(i + front) % max]  == x)	// 검색 성공
+				return i + 1;
+		return 0;																	// 검색 실패
+	}	
+	
 	//전체 데이터 수
 	public int size() {
 		return num;
