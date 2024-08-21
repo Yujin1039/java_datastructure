@@ -3,7 +3,7 @@ package ch06;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Q8 {
+public class Q08 {
 	//--- 단순 삽입 정렬 ---//
 	static void insertionSort(int[] a, int n) {
 		int[] b;

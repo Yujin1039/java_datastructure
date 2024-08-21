@@ -3,7 +3,7 @@ package ch06;
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class Q7 {
+public class Q07 {
 	/*
 	 * < 보초법을 활용한 단순 삽입 정렬 >
 	 * - 기능 : 배열의 맨 앞칸 → min 값 저장

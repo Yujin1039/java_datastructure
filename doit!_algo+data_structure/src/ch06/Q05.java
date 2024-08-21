@@ -2,7 +2,7 @@ package ch06;
 
 import java.util.Scanner;
 
-public class Q5 {
+public class Q05 {
     //--- 배열 요소 a[idx1]와 a[idx2]의 값을 교환 ---//
     static void swap(int[] a, int idx1, int idx2) {
         int t = a[idx1]; 

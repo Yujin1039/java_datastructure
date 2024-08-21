@@ -2,7 +2,7 @@ package ch06;
 
 import java.util.Scanner;
 
-public class Q1 {
+public class Q01 {
 	static void swap(int a,int b,int[] arr) {
 		int t = arr[a];
 		arr[a] = arr[b];

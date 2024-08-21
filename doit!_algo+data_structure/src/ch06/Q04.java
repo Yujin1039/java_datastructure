@@ -2,7 +2,7 @@ package ch06;
 
 import java.util.Scanner;
 
-public class Q4 {
+public class Q04 {
 	static int compare = 0;
 	static int swap = 0;
 	
