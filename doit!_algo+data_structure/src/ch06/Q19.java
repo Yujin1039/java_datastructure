@@ -23,7 +23,14 @@ public class Q19 {
 
 		for (int i = 0; i < nx; i++) {
 			System.out.print("x[" + i + "]: ");
-			x[i] = stdIn.nextInt();
+			/* 입력받은 값이 숫자가 아닌 경우의 처리 */
+			if (stdIn.hasNextInt()) {//숫자 여부 확인
+                x[i] = stdIn.nextInt();
+            } else {
+                System.out.println("유효하지 않은 입력입니다. 정수를 입력하세요.");
+                stdIn.next(); // 잘못된 입력 소비
+                i--; // i를 감소시켜 다시 입력을 받도록 함
+            }
 		}
 
 		int max = x[0];
